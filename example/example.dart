@@ -16,9 +16,6 @@ class _ExampleScreenState extends State<ExampleScreen> {
 
   void _onCropPress() async {
     final croppedImage = (await key.currentState?.cropImage())!;
-    if (croppedImage == null) {
-      return;
-    }
     showModalBottomSheet(
       context: context,
       builder: (context) => RawImage(
