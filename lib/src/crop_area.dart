@@ -5,59 +5,57 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
-
 class CropArea {
   final double _cornerSize;
-  Rect _bounds;
-  Rect _cropRect;
-  Rect _topLeftCorner;
-  Rect _topRightCorner;
-  Rect _bottomRightCorner;
-  Rect _bottomLeftCorner;
+  Rect? _bounds;
+  Rect? _cropRect;
+  late Rect _topLeftCorner;
+  late Rect _topRightCorner;
+  late Rect _bottomRightCorner;
+  late Rect _bottomLeftCorner;
 
   CropArea({
     double cornerSize = 32.0,
   }) : _cornerSize = cornerSize;
 
   void initSizes({
-    @required Offset center,
-    @required double width,
-    @required double height,
-    @required Rect bounds,
+    required Offset center,
+    required double width,
+    required double height,
+    required Rect? bounds,
   }) {
     _bounds = bounds;
     _cropRect = Rect.fromCenter(center: center, width: width, height: height);
     _updateCorners();
   }
 
-  Rect get cropRect => _cropRect;
+  Rect? get cropRect => _cropRect;
 
   void _updateCorners() {
     _topLeftCorner = Rect.fromCenter(
-      center: _cropRect.topLeft,
+      center: _cropRect!.topLeft,
       width: _cornerSize,
       height: _cornerSize,
     );
     _topRightCorner = Rect.fromCenter(
-      center: _cropRect.topRight,
+      center: _cropRect!.topRight,
       width: _cornerSize,
       height: _cornerSize,
     );
     _bottomRightCorner = Rect.fromCenter(
-      center: _cropRect.bottomRight,
+      center: _cropRect!.bottomRight,
       width: _cornerSize,
       height: _cornerSize,
     );
     _bottomLeftCorner = Rect.fromCenter(
-      center: _cropRect.bottomLeft,
+      center: _cropRect!.bottomLeft,
       width: _cornerSize,
       height: _cornerSize,
     );
   }
 
   bool contains(Offset position) {
-    return _cropRect.contains(position) ||
+    return _cropRect!.contains(position) ||
         _topLeftCorner.contains(position) ||
         _topRightCorner.contains(position) ||
         _bottomRightCorner.contains(position) ||
@@ -67,25 +65,25 @@ class CropArea {
   void moveArea(Offset newCenter) {
     final newRect = Rect.fromCenter(
       center: newCenter,
-      width: _cropRect.width,
-      height: _cropRect.height,
+      width: _cropRect!.width,
+      height: _cropRect!.height,
     );
 
     var offset = Offset(0.0, 0.0);
-    if (newRect.left < _bounds.left) {
-      offset = offset.translate(_bounds.left - newRect.left, 0.0);
+    if (newRect.left < _bounds!.left) {
+      offset = offset.translate(_bounds!.left - newRect.left, 0.0);
     }
 
-    if (newRect.top < _bounds.top) {
-      offset = offset.translate(0.0, _bounds.top - newRect.top);
+    if (newRect.top < _bounds!.top) {
+      offset = offset.translate(0.0, _bounds!.top - newRect.top);
     }
 
-    if (newRect.right > _bounds.right) {
-      offset = offset.translate(_bounds.right - newRect.right, 0.0);
+    if (newRect.right > _bounds!.right) {
+      offset = offset.translate(_bounds!.right - newRect.right, 0.0);
     }
 
-    if (newRect.bottom > _bounds.bottom) {
-      offset = offset.translate(0.0, _bounds.bottom - newRect.bottom);
+    if (newRect.bottom > _bounds!.bottom) {
+      offset = offset.translate(0.0, _bounds!.bottom - newRect.bottom);
     }
 
     _cropRect = newRect.shift(offset);
@@ -95,11 +93,11 @@ class CropArea {
   double _applyLeftBounds(double left) {
     var boundedLeft = max(
       left,
-      _bounds.left,
+      _bounds!.left,
     ); // left bound
     boundedLeft = min(
       boundedLeft,
-      _cropRect.right - _cornerSize,
+      _cropRect!.right - _cornerSize,
     ); // right bound
     return boundedLeft;
   }
@@ -107,11 +105,11 @@ class CropArea {
   double _applyTopBounds(double top) {
     var boundedTop = max(
       top,
-      _bounds.top,
+      _bounds!.top,
     ); // top bound
     boundedTop = min(
       boundedTop,
-      _cropRect.bottom - _cornerSize,
+      _cropRect!.bottom - _cornerSize,
     ); // bottom bound
     return boundedTop;
   }
@@ -119,11 +117,11 @@ class CropArea {
   double _applyRightBounds(double right) {
     var boundedRight = min(
       right,
-      _bounds.right,
+      _bounds!.right,
     ); // right bound
     boundedRight = max(
       boundedRight,
-      _cropRect.left + _cornerSize,
+      _cropRect!.left + _cornerSize,
     ); // left bound
     return boundedRight;
   }
@@ -131,11 +129,11 @@ class CropArea {
   double _applyBottomBounds(double bottom) {
     var boundedBottom = min(
       bottom,
-      _bounds.bottom,
+      _bounds!.bottom,
     ); // bottom bound
     boundedBottom = max(
       boundedBottom,
-      _cropRect.top + _cornerSize,
+      _cropRect!.top + _cornerSize,
     ); // top bound
     return boundedBottom;
   }
@@ -144,26 +142,26 @@ class CropArea {
     _cropRect = Rect.fromLTRB(
       _applyLeftBounds(newPosition.dx),
       _applyTopBounds(newPosition.dy),
-      _cropRect.right,
-      _cropRect.bottom,
+      _cropRect!.right,
+      _cropRect!.bottom,
     );
     _updateCorners();
   }
 
   void moveTopRightCorner(Offset newPosition) {
     _cropRect = Rect.fromLTRB(
-      _cropRect.left,
+      _cropRect!.left,
       _applyTopBounds(newPosition.dy),
       _applyRightBounds(newPosition.dx),
-      _cropRect.bottom,
+      _cropRect!.bottom,
     );
     _updateCorners();
   }
 
   void moveBottomRightCorner(Offset newPosition) {
     _cropRect = Rect.fromLTRB(
-      _cropRect.left,
-      _cropRect.top,
+      _cropRect!.left,
+      _cropRect!.top,
       _applyRightBounds(newPosition.dx),
       _applyBottomBounds(newPosition.dy),
     );
@@ -173,8 +171,8 @@ class CropArea {
   void moveBottomLeftCorner(Offset newPosition) {
     _cropRect = Rect.fromLTRB(
       _applyLeftBounds(newPosition.dx),
-      _cropRect.top,
-      _cropRect.right,
+      _cropRect!.top,
+      _cropRect!.right,
       _applyBottomBounds(newPosition.dy),
     );
     _updateCorners();
@@ -197,7 +195,7 @@ class CropArea {
   }
 
   Offset _getCenterDelta(Offset position) {
-    return _cropRect.center - position;
+    return _cropRect!.center - position;
   }
 
   CropActionArea getActionArea(Offset position) {
@@ -217,14 +215,14 @@ class CropArea {
       return CropActionArea.bottom_right;
     }
 
-    if (_cropRect.contains(position)) {
+    if (_cropRect!.contains(position)) {
       return CropActionArea.center;
     }
 
     return CropActionArea.none;
   }
 
-  Offset getActionAreaDelta(Offset position, CropActionArea activeArea) {
+  Offset getActionAreaDelta(Offset position, CropActionArea? activeArea) {
     switch (activeArea) {
       case CropActionArea.top_left:
         return _getTopLeftDelta(position);
@@ -241,22 +239,22 @@ class CropArea {
     }
   }
 
-  void move(Offset position, Offset delta, CropActionArea actionArea) {
+  void move(Offset? position, Offset? delta, CropActionArea? actionArea) {
     switch (actionArea) {
       case CropActionArea.top_left:
-        moveTopLeftCorner(position + delta);
+        moveTopLeftCorner(position! + delta!);
         break;
       case CropActionArea.top_right:
-        moveTopRightCorner(position + delta);
+        moveTopRightCorner(position! + delta!);
         break;
       case CropActionArea.bottom_right:
-        moveBottomRightCorner(position + delta);
+        moveBottomRightCorner(position! + delta!);
         break;
       case CropActionArea.bottom_left:
-        moveBottomLeftCorner(position + delta);
+        moveBottomLeftCorner(position! + delta!);
         break;
       case CropActionArea.center:
-        moveArea(position + delta);
+        moveArea(position! + delta!);
         break;
       default:
     }

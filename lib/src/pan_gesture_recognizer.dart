@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 
 typedef OnPanUpdate = Function(PointerEvent);
@@ -8,7 +7,7 @@ class PanGestureRecognizer extends OneSequenceGestureRecognizer {
   final OnPanUpdate onPanUpdate;
   final OnPanEnd onPanEnd;
 
-  PanGestureRecognizer({@required this.onPanUpdate, @required this.onPanEnd});
+  PanGestureRecognizer({required this.onPanUpdate, required this.onPanEnd});
 
   @override
   void addPointer(PointerEvent event) {

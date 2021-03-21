@@ -22,28 +22,28 @@ void main() {
     );
 
     cropArea.moveTopLeftCorner(Offset(20.0, 20.0));
-    expect(cropArea.cropRect.left, 20.0);
-    expect(cropArea.cropRect.top, 20.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 20.0);
+    expect(cropArea.cropRect!.top, 20.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
 
     cropArea.moveTopLeftCorner(Offset(0.0, 0.0));
-    expect(cropArea.cropRect.left, 10.0);
-    expect(cropArea.cropRect.top, 10.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 10.0);
+    expect(cropArea.cropRect!.top, 10.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
 
     cropArea.moveTopLeftCorner(Offset(125.0, 180.0));
-    expect(cropArea.cropRect.left, 125.0);
-    expect(cropArea.cropRect.top, 180.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 125.0);
+    expect(cropArea.cropRect!.top, 180.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
 
     cropArea.moveTopLeftCorner(Offset(130.0, 185.0));
-    expect(cropArea.cropRect.left, 125.0);
-    expect(cropArea.cropRect.top, 180.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 125.0);
+    expect(cropArea.cropRect!.top, 180.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
   });
 
   test('moves top right corner and checks the bounds', () {
@@ -59,22 +59,22 @@ void main() {
     );
 
     cropArea.moveTopRightCorner(Offset(180.0, 20.0));
-    expect(cropArea.cropRect.left, 65.0);
-    expect(cropArea.cropRect.top, 20.0);
-    expect(cropArea.cropRect.right, 180.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 65.0);
+    expect(cropArea.cropRect!.top, 20.0);
+    expect(cropArea.cropRect!.right, 180.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
 
     cropArea.moveTopRightCorner(Offset(200.0, 0.0));
-    expect(cropArea.cropRect.left, 65.0);
-    expect(cropArea.cropRect.top, 10.0);
-    expect(cropArea.cropRect.right, 190.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 65.0);
+    expect(cropArea.cropRect!.top, 10.0);
+    expect(cropArea.cropRect!.right, 190.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
 
     cropArea.moveTopRightCorner(Offset(0.0, 300.0));
-    expect(cropArea.cropRect.left, 65.0);
-    expect(cropArea.cropRect.top, 180.0);
-    expect(cropArea.cropRect.right, 75.0);
-    expect(cropArea.cropRect.bottom, 190.0);
+    expect(cropArea.cropRect!.left, 65.0);
+    expect(cropArea.cropRect!.top, 180.0);
+    expect(cropArea.cropRect!.right, 75.0);
+    expect(cropArea.cropRect!.bottom, 190.0);
   });
 
   test('moves bottom right corner and checks the bounds', () {
@@ -90,22 +90,22 @@ void main() {
     );
 
     cropArea.moveBottomRightCorner(Offset(180.0, 280.0));
-    expect(cropArea.cropRect.left, 65.0);
-    expect(cropArea.cropRect.top, 110.0);
-    expect(cropArea.cropRect.right, 180.0);
-    expect(cropArea.cropRect.bottom, 280.0);
+    expect(cropArea.cropRect!.left, 65.0);
+    expect(cropArea.cropRect!.top, 110.0);
+    expect(cropArea.cropRect!.right, 180.0);
+    expect(cropArea.cropRect!.bottom, 280.0);
 
     cropArea.moveBottomRightCorner(Offset(200.0, 300.0));
-    expect(cropArea.cropRect.left, 65.0);
-    expect(cropArea.cropRect.top, 110.0);
-    expect(cropArea.cropRect.right, 190.0);
-    expect(cropArea.cropRect.bottom, 290.0);
+    expect(cropArea.cropRect!.left, 65.0);
+    expect(cropArea.cropRect!.top, 110.0);
+    expect(cropArea.cropRect!.right, 190.0);
+    expect(cropArea.cropRect!.bottom, 290.0);
 
     cropArea.moveBottomRightCorner(Offset(0.0, 0.0));
-    expect(cropArea.cropRect.left, 65.0);
-    expect(cropArea.cropRect.top, 110.0);
-    expect(cropArea.cropRect.right, 75.0);
-    expect(cropArea.cropRect.bottom, 120.0);
+    expect(cropArea.cropRect!.left, 65.0);
+    expect(cropArea.cropRect!.top, 110.0);
+    expect(cropArea.cropRect!.right, 75.0);
+    expect(cropArea.cropRect!.bottom, 120.0);
   });
 
   test('moves bottom left corner and checks the bounds', () {
@@ -121,22 +121,22 @@ void main() {
     );
 
     cropArea.moveBottomLeftCorner(Offset(20.0, 280.0));
-    expect(cropArea.cropRect.left, 20.0);
-    expect(cropArea.cropRect.top, 110.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 280.0);
+    expect(cropArea.cropRect!.left, 20.0);
+    expect(cropArea.cropRect!.top, 110.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 280.0);
 
     cropArea.moveBottomLeftCorner(Offset(0.0, 300.0));
-    expect(cropArea.cropRect.left, 10.0);
-    expect(cropArea.cropRect.top, 110.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 290.0);
+    expect(cropArea.cropRect!.left, 10.0);
+    expect(cropArea.cropRect!.top, 110.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 290.0);
 
     cropArea.moveBottomLeftCorner(Offset(200.0, 0.0));
-    expect(cropArea.cropRect.left, 125.0);
-    expect(cropArea.cropRect.top, 110.0);
-    expect(cropArea.cropRect.right, 135.0);
-    expect(cropArea.cropRect.bottom, 120.0);
+    expect(cropArea.cropRect!.left, 125.0);
+    expect(cropArea.cropRect!.top, 110.0);
+    expect(cropArea.cropRect!.right, 135.0);
+    expect(cropArea.cropRect!.bottom, 120.0);
   });
 
   test('moves a crop area and checks the bounds', () {
@@ -152,22 +152,22 @@ void main() {
     );
 
     cropArea.moveArea(Offset(80.0, 80.0));
-    expect(cropArea.cropRect.left, 45.0);
-    expect(cropArea.cropRect.top, 40.0);
-    expect(cropArea.cropRect.right, 115.0);
-    expect(cropArea.cropRect.bottom, 120.0);
+    expect(cropArea.cropRect!.left, 45.0);
+    expect(cropArea.cropRect!.top, 40.0);
+    expect(cropArea.cropRect!.right, 115.0);
+    expect(cropArea.cropRect!.bottom, 120.0);
 
     cropArea.moveArea(Offset(20.0, 20.0));
-    expect(cropArea.cropRect.left, 10.0);
-    expect(cropArea.cropRect.top, 10.0);
-    expect(cropArea.cropRect.right, 80.0);
-    expect(cropArea.cropRect.bottom, 90.0);
+    expect(cropArea.cropRect!.left, 10.0);
+    expect(cropArea.cropRect!.top, 10.0);
+    expect(cropArea.cropRect!.right, 80.0);
+    expect(cropArea.cropRect!.bottom, 90.0);
 
     cropArea.moveArea(Offset(180.0, 280.0));
-    expect(cropArea.cropRect.left, 120.0);
-    expect(cropArea.cropRect.top, 210.0);
-    expect(cropArea.cropRect.right, 190.0);
-    expect(cropArea.cropRect.bottom, 290.0);
+    expect(cropArea.cropRect!.left, 120.0);
+    expect(cropArea.cropRect!.top, 210.0);
+    expect(cropArea.cropRect!.right, 190.0);
+    expect(cropArea.cropRect!.bottom, 290.0);
   });
 
   test('creates a crop area and checks the contains method', () {

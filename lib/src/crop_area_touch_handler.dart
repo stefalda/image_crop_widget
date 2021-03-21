@@ -4,24 +4,23 @@
 
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
-
 import 'crop_area.dart';
 
 class CropAreaTouchHandler {
-  final CropArea _cropArea;
-  Offset _activeAreaDelta;
-  CropActionArea _activeArea;
+  final CropArea? _cropArea;
+  Offset? _activeAreaDelta;
+  CropActionArea? _activeArea;
 
-  CropAreaTouchHandler({@required CropArea cropArea}) : _cropArea = cropArea;
+  CropAreaTouchHandler({required CropArea? cropArea}) : _cropArea = cropArea;
 
   void startTouch(Offset touchPosition) {
-    _activeArea = _cropArea.getActionArea(touchPosition);
-    _activeAreaDelta = _cropArea.getActionAreaDelta(touchPosition, _activeArea);
+    _activeArea = _cropArea!.getActionArea(touchPosition);
+    _activeAreaDelta =
+        _cropArea!.getActionAreaDelta(touchPosition, _activeArea);
   }
 
-  void updateTouch(Offset touchPosition) {
-    _cropArea.move(touchPosition, _activeAreaDelta, _activeArea);
+  void updateTouch(Offset? touchPosition) {
+    _cropArea!.move(touchPosition, _activeAreaDelta, _activeArea);
   }
 
   void endTouch() {

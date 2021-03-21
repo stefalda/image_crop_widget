@@ -1,3 +1,8 @@
+## [0.0.7] - 2021-03-21.
+
+- Migrated to NULL-SAFETY
+- Added an example app that implements the Example code in a real app
+
 ## [0.0.6] - 2019-11-01.
 
 - Super smooth touch recognition.

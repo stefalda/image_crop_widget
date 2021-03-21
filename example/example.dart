@@ -15,8 +15,10 @@ class _ExampleScreenState extends State<ExampleScreen> {
   final key = GlobalKey<ImageCropState>();
 
   void _onCropPress() async {
-    final croppedImage = await key.currentState.cropImage();
-
+    final croppedImage = (await key.currentState?.cropImage())!;
+    if (croppedImage == null) {
+      return;
+    }
     showModalBottomSheet(
       context: context,
       builder: (context) => RawImage(
@@ -36,7 +38,7 @@ class _ExampleScreenState extends State<ExampleScreen> {
             Expanded(
               child: ImageCrop(key: key, image: widget.imageFile),
             ),
-            FlatButton(
+            TextButton(
               child: Text("Okay"),
               onPressed: _onCropPress,
             ),
